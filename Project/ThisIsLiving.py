@@ -1,19 +1,22 @@
 #The start of the program
 from Profiles import Profiles
-PProfile = open(Profiles)
+PProfile == open(Profiles)
 #A definition made for the player either creating a profile, or selecting one from the Profiles folder
+
 def ProfileSelect():
-    #This class holds the name of the profile, the data that is stored in their playthrough, and location on the map
-    class PProfile (str.player, Data, Location)
+    #This class holds the name of the profile/PLAYER, the DATA that is stored in their playthrough, and LOCATION on the map
+    #The if statement is to check to see if there are any other save files within the folder. If not, it makes the user create one
+    class PProfile (player, Data, Location)
     if Profiles == 0:
         #Asks for the players name, then saves it to the profiles folder ONLY if there are no profiles detected in the folder.
-        str.player = raw_input("What is your name?")
+        #> change str.player to player.name for all instances
+        str.player == raw_input("What is your name?")
         Output(player) to Profiles
     #Else statement made to have the player pick a profile with raw_input
     else:
         print "Select your profile."
         print PProfiles
-        player = raw_input(Profiles)
+        player == raw_input(Profiles)
         #Checks to see if the type between the input and available profiles is valid or not.
         while str.player != Profiles:
             print "That is not a valid profile"
@@ -25,7 +28,7 @@ raw_input(GameState)
 #The while loop checks to see if the user input matches the available commands.
     while GameState != "New Game" or "Continue" or "Delete Save":
         print "That is not a valid command"
-
+        raw_input(GameState)
 #This if statement happens when the player selects Delete Save, it will, as stated, delete your save
     if GameState == "Delete Save":
         print "Are you sure you want to DELETE your save"
@@ -38,12 +41,29 @@ raw_input(GameState)
             print "Player has been lost"
             output (profiles)
             return
-        #Loops back to player input for GameState
         else:
+            print "Please select either New Game, Continue, or Delete Save"
+            raw_input(GameState)
+        #Loops back to player input for GameState
+        while GameState != "Yes" or "No":
             print """That is not a valid command please select either NEW GAME, CONTINUE, or DELETE SAVE"""
             raw_input(GameState)
+    #If statements to determine how the data, player stats, and location will be treated.
+    #This if statement resets all data stored in the file.
+    if GameState == "New Game":
+        Stats=0
+        Data=0
+        Location=0
+        return Game(Player)
+    #This if statement simply calls the data without editing it.
+    if GameState == "Continue Game"
+        def Game(Stats,Data,Location)
 
 
 
-
+#Ignore this comment block, these are notes for myself.
+#gender = rawinput("Are you a boy or a girl?: ")
+#classes are defined as class variable()
+#then those classes will have to be defined. self.a self.b self.c
+#Ignore this. This block will be added later.
 #class Stats[Health,Hunger,Thirst,Rest,Wellness]
