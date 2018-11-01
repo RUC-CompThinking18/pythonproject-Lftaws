@@ -1,4 +1,4 @@
-#The start of the program
+#The start of the program Imports every profile from the profiles folder.
 from Profiles import profile
 Profile == open(Profiles)
 #A definition made for the player either creating a profile, or selecting one from the Profiles folder
@@ -13,10 +13,11 @@ def ProfileSelect():
         #End of self note block
 
         if Profiles == 0:
-            #Asks for the players name, then saves it to the profiles folder ONLY if there are no profiles detected in the folder.
+            #Asks for the player's name, then saves it to the profiles folder ONLY if there are no profiles detected in the folder.
             #(Self Note) change str.player to player.name for all instances
             player.name = input("What is your name?")
             player.name = Profile
+            output = Profile
         #Else statement made to have the player pick a profile with raw_input
         else:
             print "Select your profile."
@@ -25,9 +26,11 @@ def ProfileSelect():
             #Checks to see if the type between the input and available profiles is valid or not.
             while player.name != Profiles:
                 print "That is not a valid profile"
+                player.name = raw_input ("Please select your profile")
+                print Profiles
         print "Welcome "+ Player
 
-#This next section of code will dictate what will happen to the game. Either making a new one, continuing, or deleting the save
+#This next section of code will dictate what will happen to the game. Either making a new one, continuing a game, or deleting the save
 GameState = raw_input("""What would you like to do? Start
 NEW GAME, CONTINUE Game, DELETE SAVE?
 Please type your answer""")
