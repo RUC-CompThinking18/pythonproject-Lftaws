@@ -30,7 +30,7 @@ def ProfileSelect():
                 print Profiles
         print "Welcome "+ Player
 
-#This next section of code will dictate what will happen to the game. Either making a new one, continuing a game, or deleting the save
+#This next section of code will dictate what will happen to the game. Either making a new one, continuing , or deleting the save
 GameState = raw_input("""What would you like to do? Start
 NEW GAME, CONTINUE Game, DELETE SAVE?
 Please type your answer""")
