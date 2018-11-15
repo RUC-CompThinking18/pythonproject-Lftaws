@@ -17,25 +17,28 @@ def game():
     #def gameplay():
         #while Health != 0:
         #Players inventory, items can be added or subtracted here.
+        #Inventories will be sorted into what the player can do with them. Such as eat, drink, or use.
     Inventory = {
     "Hot Dog" : 1,
     "Water Bottle" : 1,
+    #Pain Killers have no function as of yet
     "Pain Killers" : 1,
+    #Sleeping bag has no function as of yet
     "Sleeping Bag" : 1
     }
     #Day and Time
-    Day = "Sunday"
-    Time = 12
+    Time = 0
     # A function that holds how time is reset and what day it will be.
     def TimeDay():
         Day = ["Sunday","Monday","Tuesday","Wednsday","Thursday","Friday","Saturday"]
         Time = 6
-        if Time >24:
+        Day = [0]
+        if Time > 24:
             Day = Day + 1
             Time = 1
     TimeDay()
 
-
+    #Stats are being set values and declared as ints.
     Health = 75
     int(Health)
     Wellness = 75
@@ -64,7 +67,7 @@ def game():
     #While action is blank, this will loop. If health is above 0, this will constantly loop
     action = ""
     while action == "":
-        #A display to show players stats
+        #A display to show players stats and time
         print ("")
         print (int(Health), str(" Health"))
         print (int(Wellness), str(" Wellness"))
@@ -72,8 +75,10 @@ def game():
         print (int(Thirst), str(" Thirst"))
         print (int(Rest), str(" Rest"))
         print (str("$"), int(Money))
+        print ("It is " ,int(Time), "o'clock")
         print ("")
         #Asking player for input.
+        #As of Nov 15, there are no options for shopping or medicating, and answers need to be typed as shown
         action = raw_input("""What would you like to do? Beg , Shop , Sleep , Eat , Drink , Medicate\n\n""")
         #If action is to beg, will give money out and reduce stats.
         if action == "Beg" :
@@ -87,7 +92,8 @@ def game():
         #If player chooses to sleep, asks for how long. If its above 8, they get a full sleep.
         #Also reduces player stats based on how many hours they slept. They spend less energy, so lost stats are reduced.
         if action == "Sleep":
-            HowMuchSleep = raw_input("""How many hours would you like to sleep for?""")
+            #Sleeping is bugged due to an error with adding the two integers (Time) and (HowMuchSlept)
+            HowMuchSleep = raw_input("""How many hours would you like to sleep for?\n\n""")
             Rest = HowMuchSleep * 10
             Time = Time + HowMuchSleep
             Hunger = Hunger - (3 * HowMuchSleep)
@@ -95,7 +101,7 @@ def game():
             action = ""
             if HowMuchSleep >= 8:
                 Rest = 100
-                Time = Time + HowMuchSleep
+                Time = int(Time) + int(HowMuchSleep)
                 Hunger = Hunger - (3 * HowMuchSleep)
                 Thirst = Thirst - (5 * HowMuchSleep)
                 action = ""
@@ -104,26 +110,29 @@ def game():
         #This will be based on a list of items that can be edible.
         if action  == "Eat":
             print Inventory
-            print
-            print
-            EatWhat = raw_input("What would you like to eat?")
+            print()
+            print()
+            EatWhat = raw_input("What would you like to eat?\n\n")
             #Test block to add hunger when eating a hot dog, and if incorrect prompt is given, brings player back.
             if EatWhat == "Hot Dog":
                 Hunger = Hunger + 20
-                print ("Delicious")
+                print ("Delicious\n\n")
                 action = ""
             else:
-                Print ("You decided to eat nothing.")
+                Print ("You decided to eat nothing.\n\n")
                 action = ""
         #Similar to eat block, but this is for drinking
         if action == "Drink":
-            DrinkWhat = raw_input("What would you like to drink?")
+            print Inventory
+            print()
+            print()
+            DrinkWhat = raw_input("What would you like to drink?\n\n")
             if DrinkWhat == "Water Bottle":
                 Thirst = Thirst + 20
-                print ("That quenched your thirst.")
+                print ("That quenched your thirst.\n\n")
                 action = ""
             else:
-                print ("You decided to not drink anything")
+                print ("You decided to not drink anything\n\n")
                 action = ""
         #Block for harming the player for stat neglect.
         # def harm():
