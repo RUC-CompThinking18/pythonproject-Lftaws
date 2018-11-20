@@ -134,6 +134,15 @@ def game():
             else:
                 print ("You decided to not drink anything\n\n")
                 action = ""
+        if action == "Medicate":
+            print Inventory
+            print()
+            print()
+            MedWhat = raw_input("What will you use?\n\n")
+            if MedWhat == "Pain Killers":
+                Health = Health + 15
+                print ("The pain is going away.\n\n")
+                action = ""
         #Block for harming the player for stat neglect.
         # def harm():
          #    if Wellness < 50:
