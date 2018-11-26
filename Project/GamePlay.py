@@ -1,6 +1,3 @@
-import Profile
-
-
 def game():
     #stats imported for the player to be displayed
     #stats[Health,Wellness,Hunger,Thirst,Rest,Money]
@@ -86,57 +83,76 @@ def game():
         #Wellness Block
         if Wellness < 10:
             Health = Health - 10
+            print ("\nYou feel like you are dying...\n")
         elif Wellness < 20:
             Health = Health - 8
+            print ("\nYou are starting to feel absolutely terrible.\nPlease take care of yourself or you will die.\n")
         elif Wellness < 30:
             Health = Health - 4
+            print ("\nYou are feeling very unwell.\nYou must take care of your needs.\n")
         elif Wellness < 40:
             Health = Health - 2
+            print ("\nYou are starting to feel unwell\n")
         elif Wellness < 50:
             Health = Health - 1
+            print ("\nYou're not feeling so good.\n")
 
         #Hunger Block
         if Hunger < 10:
             Wellness = Wellness - 5
             Health = Health - 3
+            print ("\nYou are at risk of fading away.\n YOU MUST EAT.\n")
         elif Hunger < 20:
             Wellness = Wellness - 4
             Health = Health - 2
+            print ("\nYour body aches and you begin to feel weak.\nYou have to find food.\n")
         elif Hunger < 30:
             Wellness = Wellness - 3
             Health = Health - 1
+            print ("\nYour stomach growls in dire need of food.\n")
         elif Hunger < 40:
             Wellness = Wellness - 2
+            print ("\nYou are feeling hungry.\n")
         elif Hunger < 50:
             Wellness = Wellness - 1
+            print ("\nYou are feeling a bit peckish\n")
 
         #Thirst Block
         if Thirst < 10:
             Wellness = Wellness - 5
             Health = Health - 3
+            print ("\nYour throat and body begin to shut down.\nYou NEED a drink\n")
         elif Thirst < 20:
             Wellness = Wellness - 4
             Health -2
+            print ("\nYou are dying of dehydration\n")
         elif Thirst < 30:
             Wellness = Wellness - 3
             Health = Health - 1
+            print ("You really should get something to drink\n")
         elif Thirst < 40:
             Wellness = Wellness - 2
+            print ("\nYou are thirsty.\n")
         elif Thirst < 50:
             Wellness = Wellness - 1
+            print ("\nYou feel a bit parched.\n")
 
         #Rest Block
         if Rest == 0:
             Wellness = Wellness - 5
+            print ("\nYou are on the brink of collapse.\n")
         elif Rest < 10:
             Wellness = Wellness - 4
+            print ("\nYou struggle to stay awake.\n")
         elif Rest < 20:
             Wellness = Wellness - 3
+            print ("\nYou feel exhausted.\n")
         elif Rest < 30:
             Wellness = Wellness - 2
+            print ("\nYou should probably get some sleep.\n")
         elif Rest < 40:
             Wellness = Wellness - 1
-
+            print ("\nYou feel a bit tired.\n")
         if Health == 0:
             return "You have died"
 
@@ -205,7 +221,7 @@ def game():
             else:
                 Print ("You decided to eat nothing.\n\n")
                 action = ""
-
+                
         #Similar to eat block, but this is for drinking
         if action == "Drink":
             print Inventory
