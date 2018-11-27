@@ -17,3 +17,6 @@ The player will have to:
 manage their Health, Wellness, Hunger, Thirst, and Rest in order to not succumb to the elements.
 The more that some stats are neglected, the worse the players health will become.
 Surviving on the streets are difficult, especially when trying to keep their own needs in check.
+
+The goal of the player is to survive the streets and earn enough money to get out of there.
+The flat amount of cash needed is $100, to buy necessities and to get a bus ticket to leave the city.
