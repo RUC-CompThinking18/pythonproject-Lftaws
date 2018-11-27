@@ -374,5 +374,5 @@ def game():
         #WIP if block for game over text. Tried to make it seem to be a pathetic death, as most homeless are in danger of exposure to the elements and most peoples attitude towards the homeless.
         if action == "You have died.":
             print ("You look around you. During your final moments of life.\n\n Feeling the uncomfortable pavement you sit upon, which will now be your grave.\n\nCrowds of people, walking in front of you.\nGoing about their days.\nNot one pays attention to you even though you cry, plea, for mercy from the uncaring masses.\n Your vision fades as the elements claim you,\n The masses do not care for you any longer.\nThey dont see you as human.\nEven those who look at you advert their gaze, pretending not to see you.\n You slump over to the pavement, nothing can save you now.\nThe last thing you see is a small child, simply staring at you.\n The child recognizes your agony, but their parent quickly grabs their shoulder, and ushers the child to walk with them.\nDont talk to that person, the parent says.\nThey are like that for a reason, plus, you dont want to give money to some junkie, right honey?")
-#gameplay()
+    return
 game()
