@@ -1,29 +1,10 @@
 def game():
-    #stats imported for the player to be displayed
-    #stats[Health,Wellness,Hunger,Thirst,Rest,Money]
-    stats = []
-    def before():
-        #A check to see if the player is JUST starting their playthrough
-        answer = raw_input (""" Welcome THIS IS LIVING? You will be playing as a homeless person, down on their luck in an unforgiving environment. You will have to manage your health, feed yourself, find water and shelter, and try to find money to get out of this situation. Things will be rough, difficult, and unfair. Life always is. On the streets of the city, anything goes, and anything can go wrong. You could even die. Please type I KNOW to begin. \n\n""")
-        while answer != ("I KNOW"):
-            answer = raw_input ("""I dont believe you understand the situation you currently find youself in. The city is full of hazards, and you must survive, and earn enough money to find a way out of this hell. You risk life and limb living like this, and theres only one way out. Type I KNOW when you are about to begin.\n\n""")
+    raw_input ("You dont know how it suddenly snuck up on you.\nOne moment your work before being called to your managers office and suddenly been told you were being let go.\nThen when you get home, you found out your apartment was broken into and robbed in your absence.\nThey broke down your door, stole your possessions, and wrecked the place.\n...\nThey even took your rent money to... great.\nYour luck never changed from that moment, the downward spiral from what'd you call grace came as suddenly as being hit by a locomotive.\nBefore you knew it, you were out on the streets of the urban jungle, with only the clothes on your back.\n You only have a few dollars to your name, you'll have to find food and water to survive. How did your life ever come to this?\n\n\n\n ")
 
-        #Stats are set like this to start the game off with.
-
-    before()
-#actual start of the game
-    #def gameplay():
-        #while Health != 0:
-        #Players inventory, items can be added or subtracted here.
-        #Inventories will be sorted into what the player can do with them. Such as eat, drink, or use.
-    Inventory = {
-    "Hot Dog" : 1,
-    "Water Bottle" : 1,
-    #Pain Killers have no function as of yet
-    "Pain Killers" : 1,
-    #Sleeping bag has no function as of yet
-    "Sleeping Bag" : 1
-    }
+    #Lists for edible, drinkable, or medicatable items.
+    Edible = ["Snack: 10 Hunger: $1", "Small Meal: 25 Hunger: $3", "Medium Meal: 40 Hunger: $5", "Large Meal: 80 Hunger: $9"]
+    Drinkable = ["Small Water: 10 Thirst: $1", "Water Bottle: Thirst: 30 Thirst: $2", "Large Water Bottle: 40 Thirst: $3", "Tea: 20 Thirst & 10 Wellness: $3", "Coffee: 20 Thirst & 10 Rest: $4"]
+    Medicate = ["Bandage: 10 Health: $3", "Asprin: 15 Health: $4", "Caffeine Pills: 10 Health 20 Rest: $6" , "IV Fluid: 15 Health & 20 Thirst: $10", "First-Aid Kit: 50 Health: $10"]
     #Day and Time
     Time = 0
     # A function that holds how time is reset and what day it will be.
@@ -169,7 +150,7 @@ def game():
 
         #Asking player for input.
 
-        action = raw_input("""What would you like to do? Beg , Shop , Sleep , Eat , Drink , Medicate\n\n""")
+        action = raw_input("""What would you like to do? Beg, Sleep , Eat , Drink , Medicate\n\n""")
 
         #If action is to beg, will give money out and reduce stats.
         if action == "Beg" :
@@ -208,35 +189,131 @@ def game():
         #If player chose to eat, they will be prompted to eat what in their inventory
         #This will be based on a list of items that can be edible.
         if action  == "Eat":
-            print Inventory
-            print()
-            print()
+            print Edible
+
             EatWhat = raw_input("What would you like to eat?\n\n")
 
-            #Test block to add hunger when eating a hot dog, and if incorrect prompt is given, brings player back.
-            if EatWhat == "Hot Dog":
-                Hunger = Hunger + 20
-                print ("Delicious\n\n")
-                action = ""
-            else:
-                Print ("You decided to eat nothing.\n\n")
-                action = ""
+            #A If block for selecting food items for the player to eat.
+            #Snack Block
+            if EatWhat == "Snack":
+                if Money >= 1:
+                    Hunger = Hunger + 10
+                    print ("It sated your hunger for a little bit\n\n")
+                    Money=Money - 1
+                    EatWhat = ""
+                    action = ""
+                else:
+                    print("You didnt have enough money for a snack.")
+                    EatWhat = raw_input("What would you like to eat?\n\n")
+                    action = ""
+            #Small Meal Block
+            if EatWhat == "Small Meal":
+                if Money >= 3:
+                    Hunger = Hunger + 25
+                    print ("You Feel a bit fuller.\n\n")
+                    Money=Money - 3
+                    EatWhat = ""
+                    action = ""
+                else:
+                    print("You didnt have enough money for a Small Meal.")
+                    EatWhat = raw_input("What would you like to eat?\n\n")
+                    action = ""
+            #Medium Meal Block
+            if EatWhat == "Medium Meal":
+                if Money >= 5:
+                    Hunger = Hunger + 40
+                    print ("You have a nice meal, and dont feel as hungry.\n\n")
+                    Money=Money - 5
+                    EatWhat = ""
+                    action = ""
+                else:
+                    print("You didnt have enough money for a Medium Meal.")
+                    EatWhat = raw_input("What would you like to eat?\n\n")
+                    action = ""
+            #Large Meal Block
+            if EatWhat == "Large Meal":
+                if Money >= 9:
+                    Hunger = Hunger + 80
+                    print ("You have a nice meal, and dont feel as hungry.\n\n")
+                    Money=Money - 9
+                    EatWhat = ""
+                    action = ""
+                else:
+                    print("You didnt have enough money for a Medium Meal.")
+                    EatWhat = raw_input("What would you like to eat?\n\n")
+                    action = ""
+        else:
+            print("You decided to eat nothing")
+            action = ""
+
 
         #Similar to eat block, but this is for drinking
         if action == "Drink":
-            print Inventory
-            print()
-            print()
+            print Drinkable
             DrinkWhat = raw_input("What would you like to drink?\n\n")
-            if DrinkWhat == "Water Bottle":
-                Thirst = Thirst + 20
-                print ("That quenched your thirst.\n\n")
-                action = ""
-            #If wrong input is put in, the player will drink nothing
-            else:
-                print ("You decided to not drink anything\n\n")
-                action = ""
 
+            if DrinkWhat == "Small Water":
+                if Money >= 1:
+                    Thirst = Thirst + 10
+                    print ("You get a small drink\n\n")
+                    Money=Money - 1
+                    DrinkWhat = ""
+                    action = ""
+                else:
+                    print("You didnt have enough money for a Small Water.")
+                    DrinkWhat = raw_input("What would you like to Drink?\n\n")
+                    action = ""
+
+            if DrinkWhat == "Water Bottle":
+                if Money >= 2:
+                    Thirst = Thirst + 30
+                    print ("Your thirst is sated\n\n")
+                    Money=Money - 2
+                    DrinkWhat = ""
+                    action = ""
+                else:
+                    print("You didnt have enough money for a Water Bottle.")
+                    DrinkWhat = raw_input("What would you like to Drink?\n\n")
+                    action = ""
+
+            if DrinkWhat == "Large Water Bottle":
+                if Money >= 3:
+                    Thirst = Thirst + 40
+                    print ("You have a large drink\n\n")
+                    Money=Money - 3
+                    DrinkWhat = ""
+                    action = ""
+                else:
+                    print("You didnt have enough money for a Large Water Bottle.")
+                    DrinkWhat = raw_input("What would you like to Drink?\n\n")
+                    action = ""
+            if DrinkWhat == "Tea":
+                if Money >= 3:
+                    Thirst = Thirst + 20
+                    Wellness = Wellness +10
+                    print ("You feel a bit better after drinking the Tea\n\n")
+                    Money=Money - 3
+                    DrinkWhat = ""
+                    action = ""
+                else:
+                    print("You didnt have enough money for Tea.")
+                    DrinkWhat = raw_input("What would you like to Drink?\n\n")
+                    action = ""
+            if DrinkWhat == "Coffee":
+                if Money >= 4:
+                    Thirst = Thirst + 20
+                    Rest = Rest + 10
+                    print ("You feel a bit more energetic\n\n")
+                    Money=Money - 4
+                    DrinkWhat = ""
+                    action = ""
+                else:
+                    print("You didnt have enough money for Coffee.")
+                    DrinkWhat = raw_input("What would you like to Drink?\n\n")
+                    action = ""
+            else:
+                print ("You decided to drink nothing.")
+                action = ""
         if action == "Medicate":
             print Inventory
             print()
