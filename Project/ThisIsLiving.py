@@ -2,24 +2,22 @@ def game():
     raw_input ("You dont know how it suddenly snuck up on you.\nOne moment your work before being called to your managers office and suddenly been told you were being let go.\nThen when you get home, you found out your apartment was broken into and robbed in your absence.\nThey broke down your door, stole your possessions, and wrecked the place.\n...\nThey even took your rent money to... great.\nYour luck never changed from that moment, the downward spiral from what'd you call grace came as suddenly as being hit by a locomotive.\nBefore you knew it, you were out on the streets of the urban jungle, with only the clothes on your back.\n You only have a few dollars to your name, you'll have to find food and water to survive. How did your life ever come to this?\n\n\n\n ")
 
     #Lists for edible, drinkable, or medicatable items.
-    Edible = ["Snack: 10 Hunger: $1", "Small Meal: 25 Hunger: $3", "Medium Meal: 40 Hunger: $5", "Large Meal: 80 Hunger: $9"]
+    Edible = ["Snack: 10 Hunger: $1", "Small Meal: 35 Hunger: $3", "Medium Meal: 60 Hunger: $5", "Large Meal: 100 Hunger: $9"]
     Drinkable = ["Small Water: 10 Thirst: $1", "Water Bottle: Thirst: 30 Thirst: $2", "Large Water Bottle: 40 Thirst: $3", "Tea: 20 Thirst & 10 Wellness: $3", "Coffee: 20 Thirst & 25 Rest: $4"]
     Medicateable = ["Bandage: 10 Health: $3", "Asprin: 15 Health: $4", "Caffeine Pills: 10 Health 30 Rest: $6" , "IV Fluid: 20 Health & 40 Thirst: $10", "First-Aid Kit: 50 Health & Wellness 20: $10"]
     #Day and Time are set
     Time = 0
-    Day = 0
+    #Day = 0
     # A function that holds how time is reset and what day it will be.
-    def TimeDay():
-        Day = ["Sunday","Monday","Tuesday","Wednsday","Thursday","Friday","Saturday"]
-        Time = 6
-        Day = [0]
-        if Time == 25:
-            Day = Day + 1
-            Time = Time - 24
-            if Day == 7:
-                Day = Day - 7
+        #Day = ["Sunday","Monday","Tuesday","Wednsday","Thursday","Friday","Saturday"]
+        #Time = 6
+        #Day =CurrentDay
+        #if Time == 25:
+            #Day = Day + 1
+            #Time = Time - 24
+            #if Day == 7:
+                #Day = Day - 7
                 #Needs an integer to hold the day. Day will not change.
-    TimeDay()
 
     #Stats are being set values and declared as ints.
     Health = 75
@@ -67,76 +65,76 @@ def game():
         #Block for harming the player for stat neglect along with flavor text.
         #Wellness Block
         if Wellness < 10:
-            Health = Health - 10
+            Health = Health - 8
             print ("\nYou feel like you are dying...\n")
         elif Wellness < 20:
-            Health = Health - 8
+            Health = Health - 4
             print ("\nYou are starting to feel absolutely terrible.\nPlease take care of yourself or you will die.\n")
         elif Wellness < 30:
-            Health = Health - 4
+            Health = Health - 2
             print ("\nYou are feeling very unwell.\nYou must take care of your needs.\n")
         elif Wellness < 40:
-            Health = Health - 2
+            Health = Health - 1
             print ("\nYou are starting to feel unwell\n")
         elif Wellness < 50:
-            Health = Health - 1
+            Health = Health
             print ("\nYou're not feeling so good.\n")
 
         #Hunger Block
         if Hunger < 10:
-            Wellness = Wellness - 5
+            Wellness = Wellness - 4
             Health = Health - 3
             print ("\nYou are at risk of fading away.\n YOU MUST EAT.\n")
         elif Hunger < 20:
-            Wellness = Wellness - 4
+            Wellness = Wellness - 3
             Health = Health - 2
             print ("\nYour body aches and you begin to feel weak.\nYou have to find food.\n")
         elif Hunger < 30:
-            Wellness = Wellness - 3
+            Wellness = Wellness - 2
             Health = Health - 1
             print ("\nYour stomach growls in dire need of food.\n")
         elif Hunger < 40:
-            Wellness = Wellness - 2
+            Wellness = Wellness - 1
             print ("\nYou are feeling hungry.\n")
         elif Hunger < 50:
-            Wellness = Wellness - 1
+            Wellness = Wellness
             print ("\nYou are feeling a bit peckish\n")
 
         #Thirst Block
         if Thirst < 10:
-            Wellness = Wellness - 5
+            Wellness = Wellness - 4
             Health = Health - 3
             print ("\nYour throat and body begin to shut down.\nYou NEED a drink\n")
         elif Thirst < 20:
-            Wellness = Wellness - 4
+            Wellness = Wellness - 3
             Health -2
             print ("\nYou are dying of dehydration\n")
         elif Thirst < 30:
-            Wellness = Wellness - 3
+            Wellness = Wellness - 2
             Health = Health - 1
             print ("You really should get something to drink\n")
         elif Thirst < 40:
-            Wellness = Wellness - 2
+            Wellness = Wellness - 1
             print ("\nYou are thirsty.\n")
         elif Thirst < 50:
-            Wellness = Wellness - 1
+            Wellness = Wellness
             print ("\nYou feel a bit parched.\n")
 
         #Rest Block
         if Rest == 0:
-            Wellness = Wellness - 5
+            Wellness = Wellness - 4
             print ("\nYou are on the brink of collapse.\n")
         elif Rest < 10:
-            Wellness = Wellness - 4
+            Wellness = Wellness - 3
             print ("\nYou struggle to stay awake.\n")
         elif Rest < 20:
-            Wellness = Wellness - 3
+            Wellness = Wellness - 2
             print ("\nYou feel exhausted.\n")
         elif Rest < 30:
-            Wellness = Wellness - 2
+            Wellness = Wellness - 1
             print ("\nYou should probably get some sleep.\n")
         elif Rest < 40:
-            Wellness = Wellness - 1
+            Wellness = Wellness
             print ("\nYou feel a bit tired.\n")
 
 
@@ -148,7 +146,7 @@ def game():
         print (int(Thirst), str(" Thirst"))
         print (int(Rest), str(" Rest"))
         print (str("$"), int(Money))
-        print ("It is " , int(Time) , "o'clock")
+        print ("You have been on the street for " , int(Time) , "hours.")
         print ("")
 
         #Asking player for input.
@@ -166,7 +164,7 @@ def game():
             Time = Time + 1
             Hunger = Hunger - 2
             Thirst = Thirst - 3
-            Rest = Rest - 6
+            Rest = Rest - 4
             #action = "" resets the loop and asks for prompt again
             action = ""
 
@@ -217,7 +215,7 @@ def game():
             #Small Meal Block
             if EatWhat == "Small Meal":
                 if Money >= 3:
-                    Hunger = Hunger + 25
+                    Hunger = Hunger + 35
                     print ("You Feel a bit fuller.\n\n")
                     Money=Money - 3
                     action = ""
@@ -228,7 +226,7 @@ def game():
             #Medium Meal Block
             if EatWhat == "Medium Meal":
                 if Money >= 5:
-                    Hunger = Hunger + 40
+                    Hunger = Hunger + 60
                     print ("You have a nice meal, and dont feel as hungry.\n\n")
                     Money=Money - 5
                     action = ""
@@ -239,12 +237,12 @@ def game():
             #Large Meal Block
             if EatWhat == "Large Meal":
                 if Money >= 9:
-                    Hunger = Hunger + 80
+                    Hunger = Hunger + 100
                     print ("You have a nice meal, and dont feel as hungry.\n\n")
                     Money=Money - 9
                     action = ""
                 else:
-                    print("You didnt have enough money for a Medium Meal.")
+                    print("You didnt have enough money for a Large Meal.")
                     EatWhat = raw_input("What would you like to eat?\n\n")
                     action = ""
 
