@@ -172,7 +172,7 @@ def game():
 
         #If player chooses to sleep, asks for how long. If its above 8, they get a full sleep.
         #Also reduces player stats based on how many hours they slept. They spend less energy, so lost stats are reduced.
-        if action == "Sleep":
+        elif action == "Sleep":
             HowMuchSleep = raw_input("""How many hours would you like to sleep for?\n\n""")
             HowMuchSleep = int(HowMuchSleep)
             if HowMuchSleep < 8:
@@ -197,7 +197,7 @@ def game():
         #If player chose to eat, they will be prompted to eat what is currently available to buy. It reduces money and also increase hunger
         #This will be based on a list of items that can be edible. If the player doesnt have enough money, they are prompted again to buy somethingself.
         #Inserting a blank for EatWhat returns to the action menu.
-        if action  == "Eat":
+        elif action  == "Eat":
             print Edible
 
             EatWhat = raw_input("What would you like to eat?\n\n")
@@ -251,7 +251,7 @@ def game():
 
         #Similar to eat block, but this is for drinking, some effect more than just Thirst itself.
         #Similar to eat block, no input or wrong input to DrinkWhat will kick the player back to action menu,
-        if action == "Drink":
+        elif action == "Drink":
             print Drinkable
             DrinkWhat = raw_input("What would you like to drink?\n\n")
             #Small Water Block
@@ -312,7 +312,7 @@ def game():
                     DrinkWhat = raw_input("What would you like to Drink?\n\n")
                     action = ""
         #Medicate block increases primarily Health, but also some other things.
-        if action == "Medicate":
+        elif action == "Medicate":
             print Medicateable
             MedWhat = raw_input("What will you use?\n\n")
             #Bandage block, for stereotypical health regain.
@@ -374,9 +374,14 @@ def game():
                     print("You didnt have enough money for the First-Aid Kit.")
                     MedWhat = raw_input("What would you like to use?\n\n")
                     action = ""
-        #WIP if block for game over text. Tried to make it seem to be a pathetic death, as most homeless are in danger of exposure to the elements and most peoples attitude towards the homeless.
-        if action == "You have died." and Health <= 0:
+#If block for game over text. Tried to make it seem to be a pathetic death, as most homeless are in danger of exposure to the elements and most peoples attitude towards the homeless.
+#There is also a win condition should the player have 100 dollars.
+        elif action == "You have died." and Health <= 0:
             print ("You look around you. During your final moments of life.\n\n Feeling the uncomfortable pavement you sit upon, which will now be your grave.\n\nCrowds of people, walking in front of you.\nGoing about their days.\nNot one pays attention to you even though you cry, plea, for mercy from the uncaring masses.\n Your vision fades as the elements claim you,\n The masses do not care for you any longer.\nThey dont see you as human.\nEven those who look at you advert their gaze, pretending not to see you.\n You slump over to the pavement, nothing can save you now.\nThe last thing you see is a small child, simply staring at you.\n The child recognizes your agony, but their parent quickly grabs their shoulder, and ushers the child to walk with them.\nDont talk to that person, the parent says.\nThey are like that for a reason, plus, you dont want to give money to some junkie, right honey?")
-        if action == "Check Money" and Money >= 100
-            print ("You worked hard on the streets, doing your best to survive.\n You struggled, hard.\n But you managed to scrounge enough cash to get out of here.\n This is no place to live.\nYou found a cheap enough bus ticket, took it in a heartbeat, and got the hell out of there.\nWhatever life you're living here cant be worse out there."
-    return
+
+        elif action == "Check Money" and Money >= 100:
+            print ("You worked hard on the streets, doing your best to survive.\n You struggled, hard.\n But you managed to scrounge enough cash to get out of here.\n This is no place to live.\nYou found a cheap enough bus ticket, took it in a heartbeat, and got the hell out of there.\nWhatever life you're living here cant be worse out there.")
+        else:
+            print("That is not a valid command")
+            action = ""
+game()
