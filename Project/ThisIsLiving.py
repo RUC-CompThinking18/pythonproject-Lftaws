@@ -4,7 +4,7 @@ def game():
     #Lists for edible, drinkable, or medicatable items.
     Edible = ["Snack: 10 Hunger: $1", "Small Meal: 25 Hunger: $3", "Medium Meal: 40 Hunger: $5", "Large Meal: 80 Hunger: $9"]
     Drinkable = ["Small Water: 10 Thirst: $1", "Water Bottle: Thirst: 30 Thirst: $2", "Large Water Bottle: 40 Thirst: $3", "Tea: 20 Thirst & 10 Wellness: $3", "Coffee: 20 Thirst & 10 Rest: $4"]
-    Medicate = ["Bandage: 10 Health: $3", "Asprin: 15 Health: $4", "Caffeine Pills: 10 Health 20 Rest: $6" , "IV Fluid: 15 Health & 20 Thirst: $10", "First-Aid Kit: 50 Health: $10"]
+    Medicateable = ["Bandage: 10 Health: $3", "Asprin: 15 Health: $4", "Caffeine Pills: 10 Health 30 Rest: $6" , "IV Fluid: 20 Health & 40 Thirst: $10", "First-Aid Kit: 50 Health & Wellness 20: $10"]
     #Day and Time
     Time = 0
     # A function that holds how time is reset and what day it will be.
@@ -12,9 +12,11 @@ def game():
         Day = ["Sunday","Monday","Tuesday","Wednsday","Thursday","Friday","Saturday"]
         Time = 6
         Day = [0]
-        if Time > 24:
+        if Time == 25:
             Day = Day + 1
-            Time = 1
+            Time = Time - 24
+            if Day == 7:
+                Day = Day - 7
     TimeDay()
 
     #Stats are being set values and declared as ints.
@@ -134,8 +136,8 @@ def game():
         elif Rest < 40:
             Wellness = Wellness - 1
             print ("\nYou feel a bit tired.\n")
-        if Health == 0:
-            return "You have died"
+        if Health <= 0:
+            action = "You have died."
 
         #A display to show players stats and time
         print ("")
@@ -200,7 +202,6 @@ def game():
                     Hunger = Hunger + 10
                     print ("It sated your hunger for a little bit\n\n")
                     Money=Money - 1
-                    EatWhat = ""
                     action = ""
                 else:
                     print("You didnt have enough money for a snack.")
@@ -212,7 +213,6 @@ def game():
                     Hunger = Hunger + 25
                     print ("You Feel a bit fuller.\n\n")
                     Money=Money - 3
-                    EatWhat = ""
                     action = ""
                 else:
                     print("You didnt have enough money for a Small Meal.")
@@ -224,7 +224,6 @@ def game():
                     Hunger = Hunger + 40
                     print ("You have a nice meal, and dont feel as hungry.\n\n")
                     Money=Money - 5
-                    EatWhat = ""
                     action = ""
                 else:
                     print("You didnt have enough money for a Medium Meal.")
@@ -236,15 +235,11 @@ def game():
                     Hunger = Hunger + 80
                     print ("You have a nice meal, and dont feel as hungry.\n\n")
                     Money=Money - 9
-                    EatWhat = ""
                     action = ""
                 else:
                     print("You didnt have enough money for a Medium Meal.")
                     EatWhat = raw_input("What would you like to eat?\n\n")
                     action = ""
-        else:
-            print("You decided to eat nothing")
-            action = ""
 
 
         #Similar to eat block, but this is for drinking
@@ -257,7 +252,6 @@ def game():
                     Thirst = Thirst + 10
                     print ("You get a small drink\n\n")
                     Money=Money - 1
-                    DrinkWhat = ""
                     action = ""
                 else:
                     print("You didnt have enough money for a Small Water.")
@@ -269,7 +263,6 @@ def game():
                     Thirst = Thirst + 30
                     print ("Your thirst is sated\n\n")
                     Money=Money - 2
-                    DrinkWhat = ""
                     action = ""
                 else:
                     print("You didnt have enough money for a Water Bottle.")
@@ -281,7 +274,6 @@ def game():
                     Thirst = Thirst + 40
                     print ("You have a large drink\n\n")
                     Money=Money - 3
-                    DrinkWhat = ""
                     action = ""
                 else:
                     print("You didnt have enough money for a Large Water Bottle.")
@@ -293,7 +285,6 @@ def game():
                     Wellness = Wellness +10
                     print ("You feel a bit better after drinking the Tea\n\n")
                     Money=Money - 3
-                    DrinkWhat = ""
                     action = ""
                 else:
                     print("You didnt have enough money for Tea.")
@@ -305,24 +296,76 @@ def game():
                     Rest = Rest + 10
                     print ("You feel a bit more energetic\n\n")
                     Money=Money - 4
-                    DrinkWhat = ""
                     action = ""
                 else:
                     print("You didnt have enough money for Coffee.")
                     DrinkWhat = raw_input("What would you like to Drink?\n\n")
                     action = ""
-            else:
-                print ("You decided to drink nothing.")
-                action = ""
-        if action == "Medicate":
-            print Inventory
-            print()
-            print()
-            MedWhat = raw_input("What will you use?\n\n")
-            if MedWhat == "Pain Killers":
-                Health = Health + 15
-                print ("The pain is going away.\n\n")
-                action = ""
 
+        if action == "Medicate":
+            print Medicateable
+
+            MedWhat = raw_input("What will you use?\n\n")
+
+            if MedWhat == "Bandage":
+                if Money >= 3:
+                    Health = Health + 10
+                    print ("You patched up some old wounds.\n\n")
+                    Money=Money - 3
+                    DrinkWhat = ""
+                    action = ""
+                else:
+                    print("You didnt have enough money for some Bandages.")
+                    MedWhat = raw_input("What would you like to use?\n\n")
+                    action = ""
+
+            if MedWhat == "Asprin":
+                if Money >= 4:
+                    Health = Health + 15
+                    print ("You take some asprin to make the pain go away.\n\n")
+                    Money=Money - 4
+                    action = ""
+                else:
+                    print("You didnt have enough money for Asprin.")
+                    Medwhat = raw_input("What would you like to use?\n\n")
+                    action = ""
+
+            if MedWhat == "Caffeine Pills":
+                if Money >= 6:
+                    Health = Health + 10
+                    Rest = Rest + 30
+                    print ("You feel more energetic after ingesting the pills.\n\n")
+                    Money=Money - 6
+                    action = ""
+                else:
+                    print("You didnt have enough money for the Caffeine Pills.")
+                    MedWhat = raw_input("What would you like to use?\n\n")
+                    action = ""
+#"First-Aid Kit: 50 Health & Wellness 20: $10"
+            if MedWhat == "IV Fluid":
+                if Money >= 10:
+                    Health = Health + 20
+                    Thirst = Thirst +40
+                    print ("You get some fluid in your system.\n\n")
+                    Money=Money - 10
+                    action = ""
+                else:
+                    print("You didnt have enough money for the IV Fluid.")
+                    MedWhat = raw_input("What would you like to use?\n\n")
+                    action = ""
+
+            if MedWhat == "First-Aid Kit":
+                if Money >= 10:
+                    Health = Health + 50
+                    Wellness = Wellness + 20
+                    print ("You use the First-Aid Kit, you feel good as new.\n\n")
+                    Money=Money - 10
+                    action = ""
+                else:
+                    print("You didnt have enough money for the First-Aid Kit.")
+                    MedWhat = raw_input("What would you like to use?\n\n")
+                    action = ""
+        if action == "You have died.":
+            print ("You look around you. During your final moments of life.\n\n Feeling the uncomfortable pavement you sit upon, which will now be your grave.\n\nCrowds of people, walking in front of you.\nGoing about their days.\nNot one pays attention to you even though you cry, plea, for mercy from the uncaring masses.\n Your vision fades as the elements claim you,\n The masses do not care for you any longer.\nThey dont see you as human.\nEven those who look at you advert their gaze, pretending not to see you.\n You slump over to the pavement, nothing can save you now.\nThe last thing you see is a small child, simply staring at you.\n The child recognizes your agony, but their parent quickly grabs their shoulder, and ushers the child to walk with them.\nDont talk to that person, the parent says.\nThey are like that for a reason, plus, you dont want to give money to some junkie, right honey?")
 #gameplay()
 game()
