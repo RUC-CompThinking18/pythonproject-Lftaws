@@ -3,9 +3,9 @@ def game():
 
     #Lists for edible, drinkable, or medicatable items.
     Edible = ["Snack: 10 Hunger: $1", "Small Meal: 25 Hunger: $3", "Medium Meal: 40 Hunger: $5", "Large Meal: 80 Hunger: $9"]
-    Drinkable = ["Small Water: 10 Thirst: $1", "Water Bottle: Thirst: 30 Thirst: $2", "Large Water Bottle: 40 Thirst: $3", "Tea: 20 Thirst & 10 Wellness: $3", "Coffee: 20 Thirst & 10 Rest: $4"]
+    Drinkable = ["Small Water: 10 Thirst: $1", "Water Bottle: Thirst: 30 Thirst: $2", "Large Water Bottle: 40 Thirst: $3", "Tea: 20 Thirst & 10 Wellness: $3", "Coffee: 20 Thirst & 25 Rest: $4"]
     Medicateable = ["Bandage: 10 Health: $3", "Asprin: 15 Health: $4", "Caffeine Pills: 10 Health 30 Rest: $6" , "IV Fluid: 20 Health & 40 Thirst: $10", "First-Aid Kit: 50 Health & Wellness 20: $10"]
-    #Day and Time
+    #Day and Time are set
     Time = 0
     # A function that holds how time is reset and what day it will be.
     def TimeDay():
@@ -62,7 +62,7 @@ def game():
         if Rest < 0:
             Rest = 0
 
-        #Block for harming the player for stat neglect.
+        #Block for harming the player for stat neglect along with flavor text.
         #Wellness Block
         if Wellness < 10:
             Health = Health - 10
@@ -172,15 +172,15 @@ def game():
             if HowMuchSleep < 8:
                 Rest = Rest + (HowMuchSleep * 10)
                 Time = Time + HowMuchSleep
-                Hunger = Hunger - (2 * HowMuchSleep)
-                Thirst = Thirst - (3 * HowMuchSleep)
+                Hunger = Hunger - (1 * HowMuchSleep)
+                Thirst = Thirst - (2 * HowMuchSleep)
                 action = ""
             #Checking to see if the player sleeps for 8 or more hours
             if HowMuchSleep >= 8:
                 Rest = 100
                 Time = Time + HowMuchSleep
-                Hunger = Hunger - (2 * HowMuchSleep)
-                Thirst = Thirst - (3 * HowMuchSleep)
+                Hunger = Hunger - (1 * HowMuchSleep)
+                Thirst = Thirst - (2 * HowMuchSleep)
                 HowMuchSleep = 0
                 action = ""
             else:
@@ -188,8 +188,9 @@ def game():
                 action = ""
 
 
-        #If player chose to eat, they will be prompted to eat what in their inventory
-        #This will be based on a list of items that can be edible.
+        #If player chose to eat, they will be prompted to eat what is currently available to buy. It reduces money and also increase hunger
+        #This will be based on a list of items that can be edible. If the player doesnt have enough money, they are prompted again to buy somethingself.
+        #Inserting a blank for EatWhat returns to the action menu.
         if action  == "Eat":
             print Edible
 
@@ -242,11 +243,12 @@ def game():
                     action = ""
 
 
-        #Similar to eat block, but this is for drinking
+        #Similar to eat block, but this is for drinking, some effect more than just Thirst itself.
+        #Similar to eat block, no input or wrong input to DrinkWhat will kick the player back to action menu,
         if action == "Drink":
             print Drinkable
             DrinkWhat = raw_input("What would you like to drink?\n\n")
-
+            #Small Water Block
             if DrinkWhat == "Small Water":
                 if Money >= 1:
                     Thirst = Thirst + 10
@@ -257,7 +259,7 @@ def game():
                     print("You didnt have enough money for a Small Water.")
                     DrinkWhat = raw_input("What would you like to Drink?\n\n")
                     action = ""
-
+            #Water Bottle Block
             if DrinkWhat == "Water Bottle":
                 if Money >= 2:
                     Thirst = Thirst + 30
@@ -268,7 +270,7 @@ def game():
                     print("You didnt have enough money for a Water Bottle.")
                     DrinkWhat = raw_input("What would you like to Drink?\n\n")
                     action = ""
-
+            #Large Water Bottle Block
             if DrinkWhat == "Large Water Bottle":
                 if Money >= 3:
                     Thirst = Thirst + 40
@@ -279,6 +281,7 @@ def game():
                     print("You didnt have enough money for a Large Water Bottle.")
                     DrinkWhat = raw_input("What would you like to Drink?\n\n")
                     action = ""
+            #Tea Block, also increases wellness
             if DrinkWhat == "Tea":
                 if Money >= 3:
                     Thirst = Thirst + 20
@@ -290,10 +293,11 @@ def game():
                     print("You didnt have enough money for Tea.")
                     DrinkWhat = raw_input("What would you like to Drink?\n\n")
                     action = ""
+            #Coffee block, increases rest a tad bit
             if DrinkWhat == "Coffee":
                 if Money >= 4:
                     Thirst = Thirst + 20
-                    Rest = Rest + 10
+                    Rest = Rest + 25
                     print ("You feel a bit more energetic\n\n")
                     Money=Money - 4
                     action = ""
@@ -301,12 +305,11 @@ def game():
                     print("You didnt have enough money for Coffee.")
                     DrinkWhat = raw_input("What would you like to Drink?\n\n")
                     action = ""
-
+        #Medicate block increases primarily Health, but also some other things.
         if action == "Medicate":
             print Medicateable
-
             MedWhat = raw_input("What will you use?\n\n")
-
+            #Bandage block, for stereotypical health regain.
             if MedWhat == "Bandage":
                 if Money >= 3:
                     Health = Health + 10
@@ -318,7 +321,7 @@ def game():
                     print("You didnt have enough money for some Bandages.")
                     MedWhat = raw_input("What would you like to use?\n\n")
                     action = ""
-
+            #Asprin block, for making pains go away. Do not attempt to solve all pains with asprin, and only asprin.
             if MedWhat == "Asprin":
                 if Money >= 4:
                     Health = Health + 15
@@ -329,7 +332,7 @@ def game():
                     print("You didnt have enough money for Asprin.")
                     Medwhat = raw_input("What would you like to use?\n\n")
                     action = ""
-
+            #Caffeine Pill block, to increase rest, does not include crashing.
             if MedWhat == "Caffeine Pills":
                 if Money >= 6:
                     Health = Health + 10
@@ -341,7 +344,7 @@ def game():
                     print("You didnt have enough money for the Caffeine Pills.")
                     MedWhat = raw_input("What would you like to use?\n\n")
                     action = ""
-#"First-Aid Kit: 50 Health & Wellness 20: $10"
+            #IV Fluid, weird choice, but is purchasable and body can absorb it better than water in some cases.
             if MedWhat == "IV Fluid":
                 if Money >= 10:
                     Health = Health + 20
@@ -353,7 +356,7 @@ def game():
                     print("You didnt have enough money for the IV Fluid.")
                     MedWhat = raw_input("What would you like to use?\n\n")
                     action = ""
-
+            #First-Aid Kit block, to bind all previous woes and wounds.
             if MedWhat == "First-Aid Kit":
                 if Money >= 10:
                     Health = Health + 50
@@ -365,6 +368,7 @@ def game():
                     print("You didnt have enough money for the First-Aid Kit.")
                     MedWhat = raw_input("What would you like to use?\n\n")
                     action = ""
+        #WIP if block for game over text. Tried to make it seem to be a pathetic death, as most homeless are in danger of exposure to the elements and most peoples attitude towards the homeless.
         if action == "You have died.":
             print ("You look around you. During your final moments of life.\n\n Feeling the uncomfortable pavement you sit upon, which will now be your grave.\n\nCrowds of people, walking in front of you.\nGoing about their days.\nNot one pays attention to you even though you cry, plea, for mercy from the uncaring masses.\n Your vision fades as the elements claim you,\n The masses do not care for you any longer.\nThey dont see you as human.\nEven those who look at you advert their gaze, pretending not to see you.\n You slump over to the pavement, nothing can save you now.\nThe last thing you see is a small child, simply staring at you.\n The child recognizes your agony, but their parent quickly grabs their shoulder, and ushers the child to walk with them.\nDont talk to that person, the parent says.\nThey are like that for a reason, plus, you dont want to give money to some junkie, right honey?")
 #gameplay()
