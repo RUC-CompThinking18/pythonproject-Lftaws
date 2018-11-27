@@ -7,6 +7,7 @@ def game():
     Medicateable = ["Bandage: 10 Health: $3", "Asprin: 15 Health: $4", "Caffeine Pills: 10 Health 30 Rest: $6" , "IV Fluid: 20 Health & 40 Thirst: $10", "First-Aid Kit: 50 Health & Wellness 20: $10"]
     #Day and Time are set
     Time = 0
+    Day = 0
     # A function that holds how time is reset and what day it will be.
     def TimeDay():
         Day = ["Sunday","Monday","Tuesday","Wednsday","Thursday","Friday","Saturday"]
@@ -17,6 +18,7 @@ def game():
             Time = Time - 24
             if Day == 7:
                 Day = Day - 7
+                #Needs an integer to hold the day. Day will not change.
     TimeDay()
 
     #Stats are being set values and declared as ints.
@@ -32,7 +34,7 @@ def game():
     int(Rest)
     Money = 2.5
     float(Money)
-
+#Might not need floats and ints function.
 
     #A while loop that causes the player to select what they want to do
     #While action is blank, this will loop. If health is above 0, this will constantly loop
@@ -136,8 +138,7 @@ def game():
         elif Rest < 40:
             Wellness = Wellness - 1
             print ("\nYou feel a bit tired.\n")
-        if Health <= 0:
-            action = "You have died."
+
 
         #A display to show players stats and time
         print ("")
@@ -151,8 +152,10 @@ def game():
         print ("")
 
         #Asking player for input.
-
-        action = raw_input("""What would you like to do? Beg, Sleep , Eat , Drink , Medicate\n\n""")
+        if Health <= 0:
+            action = "You have died."
+        else:
+            action = raw_input("""What would you like to do? Beg, Sleep , Eat , Drink , Medicate\n\n""")
 
         #If action is to beg, will give money out and reduce stats.
         if action == "Beg" :
@@ -318,7 +321,7 @@ def game():
                     DrinkWhat = ""
                     action = ""
                 else:
-                    print("You didnt have enough money for some Bandages.")
+                    print("You didnt have enough money for some Bandages")
                     MedWhat = raw_input("What would you like to use?\n\n")
                     action = ""
             #Asprin block, for making pains go away. Do not attempt to solve all pains with asprin, and only asprin.
@@ -349,7 +352,7 @@ def game():
                 if Money >= 10:
                     Health = Health + 20
                     Thirst = Thirst +40
-                    print ("You get some fluid in your system.\n\n")
+                    print ("You get some fluid in your system..\n\n")
                     Money=Money - 10
                     action = ""
                 else:
